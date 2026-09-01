@@ -106,7 +106,6 @@
       background: #444;
     }
 
-    /* SPARKS */
     .spark {
       position: fixed;
       width: 5px;
@@ -141,46 +140,30 @@
 <body>
 
   <div class="game-container">
-
     <audio id="bgmusic" src="./hidden.mp3" loop></audio>
-
     <img src="./yellowgame.png">
-
     <div class="heart1"></div>
     <div class="heart2"></div>
     <div class="heart3"></div>
-
   </div>
 
   <button id="musicBtn">🔇 Music</button>
 
-  <audio
-    id="clicksound"
-    src="./reward.mp3"
-    preload="auto">
+  <audio id="clicksound" src="./reward.mp3" preload="auto">
   </audio>
-
 
   <script>
 
-    /* =========================
-       MUSIC
-    ========================= */
-
     const bgmusic = document.getElementById("bgmusic");
     const musicBtn = document.getElementById("musicBtn");
-
+    
     let musicPlaying = false;
 
     musicBtn.addEventListener("click", () => {
-
       if (musicPlaying) {
-
         bgmusic.pause();
         musicBtn.textContent = "🔇 Music";
-
       } else {
-
         bgmusic.play();
         musicBtn.textContent = "🔊 Music";
 
@@ -198,9 +181,8 @@
     function markFound(element) {
 
       if (!element.classList.contains("active")) {
-
         element.classList.add("active");
-
+        
         foundCount++;
 
         clicksound.currentTime = 0;
@@ -215,11 +197,8 @@
             alert("🎉 Wow congrats!!!");
 
           }, 3000);
-
         }
-
       }
-
     }
 
 
@@ -262,9 +241,7 @@
         setTimeout(() => {
           spark.remove();
         }, 500);
-
       }
-
     });
 
   </script>
