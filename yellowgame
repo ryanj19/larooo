@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hidden Objects Game 2</title>
+  <link rel="icon" type="image" href="./images/yellowh.png"> 
+  <style>
+    body {
+      overflow: hidden;
+      position: relative;
+      margin: 0;  
+      padding: 0;
+      background-color: #f0f0f0; 
+    }
+    img {
+      width: 1000px;  
+      height: 992px;
+      object-fit: cover;  
+      position: relative; 
+      z-index: 0;
+      display: block;
+      margin: 0 auto;
+      margin-top: -1px;
+      -webkit-user-drag: none;
+      user-drag: none;
+    }
+    .game-container {
+      position: relative;
+      width: 100%;
+      height: auto;
+      margin: 0 auto;
+    }
+    .heart1, .heart2, .heart3 {
+      z-index: 2;
+      transition: opacity 3.3s ease;
+    }
+    .heart1.active, .heart2.active, .heart3.active {
+      opacity: 100%;                
+    }
+    .heart1 {
+      width: 80px;
+      height: 80px;
+      opacity: 1%;
+      position: absolute;
+      bottom: 0px;
+      left: 577.5px;
+      border-radius: 50%;
+      background-color: rgba(0, 128, 0, 0.5);
+      box-shadow: 0 0 50px 50px rgb(217, 255, 0);
+    }   
+    .heart2 {
+      width: 50px;
+      height: 50px;
+      opacity: 1%;
+      position: absolute;
+      top: 80px;
+      left: 940px;
+      border-radius: 50%;
+      background-color: rgba(0, 128, 0, 0.5);
+      box-shadow: 0 0 30px 25px rgb(217, 255, 0);
+    }
+    .heart3 {
+      width: 70px;
+      height: 70px;
+      opacity: 1%;
+      position: absolute;
+      bottom: 305px;
+      left: 1212px;
+      border-radius: 50%;
+      background-color: rgba(0, 128, 0, 0.5);
+      box-shadow: 0 0 40px 40px rgb(217, 255, 0);
+    }
+    #musicBtn {
+      position: fixed;
+      bottom: 15px;
+      left: 340px;
+      z-index: 10;
+      padding: 10px 15px;
+      font-size: 16px;
+      font-family: "Press Start 2P", monospace;
+      border: none;
+      border-radius: 8px;
+      background: #222;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+      transition: background 0.2s ease;
+    }
+
+    #musicBtn:hover {
+      background: #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <audio id="bgmusic" src="./audios/hidden.mp3" loop></audio>
+    <img src="./images/yellowgame.png">
+    <div class="heart1"></div>
+    <div class="heart2"></div>
+    <div class="heart3"></div>
+  </div>
+
+  <button id="musicBtn">🔇 Music</button>
+  <audio id="clicksound" src="./audios/reward.mp3" preload="auto"></audio>   
+
+  <script>
+    let foundCount = 0; 
+    const totalHearts = 3;
+
+    const bgmusic = document.getElementById("bgmusic");
+    const musicBtn = document.getElementById("musicBtn");
+    const clicksound = document.getElementById("clicksound");
+    let musicPlaying = false;
+
+    musicBtn.addEventListener("click", () => {
+      if (musicPlaying) {
+        bgmusic.pause();
+        musicBtn.textContent = "🔇 Music";
+      } else {
+        bgmusic.play();
+        musicBtn.textContent = "🔊 Music";
+      }
+      musicPlaying = !musicPlaying;
+    });
+
+    function markFound(element) {
+      if (!element.classList.contains("active")) {
+        element.classList.add("active");
+        foundCount++;
+
+        clicksound.currentTime = 0;
+        clicksound.volume = 1.0;
+        clicksound.play();
+
+        if (foundCount === totalHearts) {
+          setTimeout(() => {
+            alert("🎉 Wow congrats!!!");
+          }, 3000);
+
+          setTimeout(() => {
+            window.location.href = "yellowgame.html";
+          }, 5000);
+        }
+      }
+    }
+
+    document.querySelector(".heart1").addEventListener("click", function() {
+      markFound(this);
+    });
+    document.querySelector(".heart2").addEventListener("click", function() {
+      markFound(this);
+    });
+    document.querySelector(".heart3").addEventListener("click", function() {
+      markFound(this);
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
