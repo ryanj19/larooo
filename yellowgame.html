@@ -157,7 +157,7 @@
     const bgmusic = document.getElementById("bgmusic");
     const musicBtn = document.getElementById("musicBtn");
     
-    let musicPlaying = false;
+    let musicPlaying = true;
 
     musicBtn.addEventListener("click", () => {
       if (musicPlaying) {
@@ -193,9 +193,7 @@
         if (foundCount === totalHearts) {
 
           setTimeout(() => {
-
-            alert("🎉 Wow congrats!!!");
-
+            alert("🎉 Wow congrats!!! ulit");
           }, 3000);
         }
       }
